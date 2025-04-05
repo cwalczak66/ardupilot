@@ -4,6 +4,12 @@
     <Filter Include="AP_Motors">
       <UniqueIdentifier>{f6325cad-98e5-487a-9d9d-fe5638a417f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="AC_AttitudeControl">
+      <UniqueIdentifier>{53c169f6-2008-4571-912e-1e56724b29e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RC_Channel">
+      <UniqueIdentifier>{957bac64-5794-4330-a0fa-f31359a8e5f3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\libraries\AP_Motors\AP_Motors.h">
@@ -60,6 +66,42 @@
     <ClInclude Include="..\libraries\AP_Motors\AP_MotorsTri.h">
       <Filter>AP_Motors</Filter>
     </ClInclude>
+    <ClInclude Include="..\libraries\AC_AttitudeControl\AC_AttitudeControl.h">
+      <Filter>AC_AttitudeControl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\AC_AttitudeControl\AC_AttitudeControl_Heli.h">
+      <Filter>AC_AttitudeControl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\AC_AttitudeControl\AC_AttitudeControl_Multi.h">
+      <Filter>AC_AttitudeControl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\AC_AttitudeControl\AC_AttitudeControl_Multi_6DoF.h">
+      <Filter>AC_AttitudeControl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\AC_AttitudeControl\AC_AttitudeControl_Sub.h">
+      <Filter>AC_AttitudeControl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\AC_AttitudeControl\AC_AttitudeControl_TS.h">
+      <Filter>AC_AttitudeControl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\AC_AttitudeControl\AC_CommandModel.h">
+      <Filter>AC_AttitudeControl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\AC_AttitudeControl\AC_PosControl.h">
+      <Filter>AC_AttitudeControl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\AC_AttitudeControl\AC_WeatherVane.h">
+      <Filter>AC_AttitudeControl</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\RC_Channel\RC_Channel.h">
+      <Filter>RC_Channel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\RC_Channel\RC_Channel_config.h">
+      <Filter>RC_Channel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\RC_Channel\RC_Channels_VarInfo.h">
+      <Filter>RC_Channel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\libraries\AP_Motors\AP_Motors_Class.cpp">
@@ -112,6 +154,42 @@
     </ClCompile>
     <ClCompile Include="..\libraries\AP_Motors\AP_MotorsTri.cpp">
       <Filter>AP_Motors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AC_AttitudeControl\AC_AttitudeControl.cpp">
+      <Filter>AC_AttitudeControl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AC_AttitudeControl\AC_AttitudeControl_Heli.cpp">
+      <Filter>AC_AttitudeControl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AC_AttitudeControl\AC_AttitudeControl_Multi.cpp">
+      <Filter>AC_AttitudeControl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AC_AttitudeControl\AC_AttitudeControl_Multi_6DoF.cpp">
+      <Filter>AC_AttitudeControl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AC_AttitudeControl\AC_AttitudeControl_Sub.cpp">
+      <Filter>AC_AttitudeControl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AC_AttitudeControl\AC_AttitudeControl_TS.cpp">
+      <Filter>AC_AttitudeControl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AC_AttitudeControl\AC_CommandModel.cpp">
+      <Filter>AC_AttitudeControl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AC_AttitudeControl\AC_PosControl.cpp">
+      <Filter>AC_AttitudeControl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AC_AttitudeControl\AC_WeatherVane.cpp">
+      <Filter>AC_AttitudeControl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AC_AttitudeControl\ControlMonitor.cpp">
+      <Filter>AC_AttitudeControl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\RC_Channel\RC_Channel.cpp">
+      <Filter>RC_Channel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\RC_Channel\RC_Channels.cpp">
+      <Filter>RC_Channel</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

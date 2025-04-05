@@ -127,6 +127,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\libraries\AC_AttitudeControl\AC_AttitudeControl.h" />
+    <ClInclude Include="..\libraries\AC_AttitudeControl\AC_AttitudeControl_Heli.h" />
+    <ClInclude Include="..\libraries\AC_AttitudeControl\AC_AttitudeControl_Multi.h" />
+    <ClInclude Include="..\libraries\AC_AttitudeControl\AC_AttitudeControl_Multi_6DoF.h" />
+    <ClInclude Include="..\libraries\AC_AttitudeControl\AC_AttitudeControl_Sub.h" />
+    <ClInclude Include="..\libraries\AC_AttitudeControl\AC_AttitudeControl_TS.h" />
+    <ClInclude Include="..\libraries\AC_AttitudeControl\AC_CommandModel.h" />
+    <ClInclude Include="..\libraries\AC_AttitudeControl\AC_PosControl.h" />
+    <ClInclude Include="..\libraries\AC_AttitudeControl\AC_WeatherVane.h" />
     <ClInclude Include="..\libraries\AP_Motors\AP_Motors.h" />
     <ClInclude Include="..\libraries\AP_Motors\AP_Motors6DOF.h" />
     <ClInclude Include="..\libraries\AP_Motors\AP_MotorsCoax.h" />
@@ -145,8 +154,21 @@
     <ClInclude Include="..\libraries\AP_Motors\AP_MotorsTri.h" />
     <ClInclude Include="..\libraries\AP_Motors\AP_Motors_Class.h" />
     <ClInclude Include="..\libraries\AP_Motors\AP_Motors_Thrust_Linearization.h" />
+    <ClInclude Include="..\libraries\RC_Channel\RC_Channel.h" />
+    <ClInclude Include="..\libraries\RC_Channel\RC_Channels_VarInfo.h" />
+    <ClInclude Include="..\libraries\RC_Channel\RC_Channel_config.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\libraries\AC_AttitudeControl\AC_AttitudeControl.cpp" />
+    <ClCompile Include="..\libraries\AC_AttitudeControl\AC_AttitudeControl_Heli.cpp" />
+    <ClCompile Include="..\libraries\AC_AttitudeControl\AC_AttitudeControl_Multi.cpp" />
+    <ClCompile Include="..\libraries\AC_AttitudeControl\AC_AttitudeControl_Multi_6DoF.cpp" />
+    <ClCompile Include="..\libraries\AC_AttitudeControl\AC_AttitudeControl_Sub.cpp" />
+    <ClCompile Include="..\libraries\AC_AttitudeControl\AC_AttitudeControl_TS.cpp" />
+    <ClCompile Include="..\libraries\AC_AttitudeControl\AC_CommandModel.cpp" />
+    <ClCompile Include="..\libraries\AC_AttitudeControl\AC_PosControl.cpp" />
+    <ClCompile Include="..\libraries\AC_AttitudeControl\AC_WeatherVane.cpp" />
+    <ClCompile Include="..\libraries\AC_AttitudeControl\ControlMonitor.cpp" />
     <ClCompile Include="..\libraries\AP_Motors\AP_Motors6DOF.cpp" />
     <ClCompile Include="..\libraries\AP_Motors\AP_MotorsCoax.cpp" />
     <ClCompile Include="..\libraries\AP_Motors\AP_MotorsHeli.cpp" />
@@ -164,6 +186,8 @@
     <ClCompile Include="..\libraries\AP_Motors\AP_MotorsTri.cpp" />
     <ClCompile Include="..\libraries\AP_Motors\AP_Motors_Class.cpp" />
     <ClCompile Include="..\libraries\AP_Motors\AP_Motors_Thrust_Linearization.cpp" />
+    <ClCompile Include="..\libraries\RC_Channel\RC_Channel.cpp" />
+    <ClCompile Include="..\libraries\RC_Channel\RC_Channels.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

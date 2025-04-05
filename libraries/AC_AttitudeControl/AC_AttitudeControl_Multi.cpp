@@ -4,12 +4,10 @@
 #include <AC_PID/AC_PID.h>
 #include <AP_Scheduler/AP_Scheduler.h>
 
-<<<<<<< HEAD
 // testing quick change
-=======
 
 #include <RC_Channel/RC_Channel.h>
->>>>>>> 2a95b1f477acde2bedf8655df271c1dcc5d2eb98
+
 
 // table of user settable parameters
 const AP_Param::GroupInfo AC_AttitudeControl_Multi::var_info[] = {
