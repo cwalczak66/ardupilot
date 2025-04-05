@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="AP_Motors">
+      <UniqueIdentifier>{f6325cad-98e5-487a-9d9d-fe5638a417f4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\libraries\AP_Motors\AP_Motors.h">
+      <Filter>AP_Motors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\AP_Motors\AP_Motors_Class.h">
+      <Filter>AP_Motors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\AP_Motors\AP_Motors_Thrust_Linearization.h">
+      <Filter>AP_Motors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\AP_Motors\AP_Motors6DOF.h">
+      <Filter>AP_Motors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\AP_Motors\AP_MotorsCoax.h">
+      <Filter>AP_Motors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\AP_Motors\AP_MotorsHeli.h">
+      <Filter>AP_Motors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\AP_Motors\AP_MotorsHeli_Dual.h">
+      <Filter>AP_Motors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\AP_Motors\AP_MotorsHeli_Quad.h">
+      <Filter>AP_Motors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\AP_Motors\AP_MotorsHeli_RSC.h">
+      <Filter>AP_Motors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\AP_Motors\AP_MotorsHeli_Single.h">
+      <Filter>AP_Motors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\AP_Motors\AP_MotorsHeli_Swash.h">
+      <Filter>AP_Motors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\AP_Motors\AP_MotorsMatrix.h">
+      <Filter>AP_Motors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\AP_Motors\AP_MotorsMatrix_6DoF_Scripting.h">
+      <Filter>AP_Motors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\AP_Motors\AP_MotorsMatrix_Scripting_Dynamic.h">
+      <Filter>AP_Motors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\AP_Motors\AP_MotorsMulticopter.h">
+      <Filter>AP_Motors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\AP_Motors\AP_MotorsSingle.h">
+      <Filter>AP_Motors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\AP_Motors\AP_MotorsTailsitter.h">
+      <Filter>AP_Motors</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\AP_Motors\AP_MotorsTri.h">
+      <Filter>AP_Motors</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\libraries\AP_Motors\AP_Motors_Class.cpp">
+      <Filter>AP_Motors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AP_Motors\AP_Motors_Thrust_Linearization.cpp">
+      <Filter>AP_Motors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AP_Motors\AP_Motors6DOF.cpp">
+      <Filter>AP_Motors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AP_Motors\AP_MotorsCoax.cpp">
+      <Filter>AP_Motors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AP_Motors\AP_MotorsHeli.cpp">
+      <Filter>AP_Motors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AP_Motors\AP_MotorsHeli_Dual.cpp">
+      <Filter>AP_Motors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AP_Motors\AP_MotorsHeli_Quad.cpp">
+      <Filter>AP_Motors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AP_Motors\AP_MotorsHeli_RSC.cpp">
+      <Filter>AP_Motors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AP_Motors\AP_MotorsHeli_Single.cpp">
+      <Filter>AP_Motors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AP_Motors\AP_MotorsHeli_Swash.cpp">
+      <Filter>AP_Motors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AP_Motors\AP_MotorsMatrix.cpp">
+      <Filter>AP_Motors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AP_Motors\AP_MotorsMatrix_6DoF_Scripting.cpp">
+      <Filter>AP_Motors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AP_Motors\AP_MotorsMatrix_Scripting_Dynamic.cpp">
+      <Filter>AP_Motors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AP_Motors\AP_MotorsMulticopter.cpp">
+      <Filter>AP_Motors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AP_Motors\AP_MotorsSingle.cpp">
+      <Filter>AP_Motors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AP_Motors\AP_MotorsTailsitter.cpp">
+      <Filter>AP_Motors</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libraries\AP_Motors\AP_MotorsTri.cpp">
+      <Filter>AP_Motors</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
