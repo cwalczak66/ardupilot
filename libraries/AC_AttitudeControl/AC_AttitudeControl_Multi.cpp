@@ -4,6 +4,8 @@
 #include <AC_PID/AC_PID.h>
 #include <AP_Scheduler/AP_Scheduler.h>
 
+
+
 // testing quick change
 
 #include <RC_Channel/RC_Channel.h>
@@ -447,7 +449,9 @@ void AC_AttitudeControl_Multi::update_throttle_rpy_mix()
 void AC_AttitudeControl_Multi::rate_controller_run()
 {
 
-    int pwm_val = RC_Channel::rc_channel(12)->get_radio_in();  // Channel 13 is index 12
+    //int pwm_val = RC_Channel::ch(12)->get_radio_in();  // Channel 13 is index 12
+    int pwmSig = rc().channel(12)->get_radio_in();
+    
     // boost angle_p/pd each cycle on high throttle slew
     update_throttle_gain_boost();
 
