@@ -9,6 +9,7 @@
 // testing quick change
 
 #include <RC_Channel/RC_Channel.h>
+#include <GCS_MAVLink/GCS.h>
 
 
 // table of user settable parameters
@@ -450,7 +451,13 @@ void AC_AttitudeControl_Multi::rate_controller_run()
 {
 
     //int pwm_val = RC_Channel::ch(12)->get_radio_in();  // Channel 13 is index 12
-    int pwmSig = rc().channel(12)->get_radio_in();
+    int pwmch13 = rc().channel(12)->get_radio_in();
+    static uint8_t counter = 0;
+    counter++;
+    if (counter > 50) {
+        counter = 0;
+        gcs().send_text(MAV_SEVERITY_CRITICAL, "AttitudeCtrl: value = %d", pwmch13);
+    }
     
     // boost angle_p/pd each cycle on high throttle slew
     update_throttle_gain_boost();
