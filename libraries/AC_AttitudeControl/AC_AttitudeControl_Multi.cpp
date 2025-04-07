@@ -454,7 +454,7 @@ void AC_AttitudeControl_Multi::rate_controller_run()
     int pwmch13 = rc().channel(12)->get_radio_in();
     static uint8_t counter = 0;
     counter++;
-    if (counter > 50) {
+    if (counter > 100) {
         counter = 0;
         gcs().send_text(MAV_SEVERITY_CRITICAL, "AttitudeCtrl: value = %d", pwmch13);
     }
@@ -469,14 +469,36 @@ void AC_AttitudeControl_Multi::rate_controller_run()
 
     Vector3f gyro_latest = _ahrs.get_gyro_latest();
 
-    _motors.set_roll(get_rate_roll_pid().update_all(_ang_vel_body.x, gyro_latest.x,  _dt, _motors.limit.roll, _pd_scale.x) + _actuator_sysid.x);
-    _motors.set_roll_ff(get_rate_roll_pid().get_ff());
+    if(pwmch13 >= 1600) {
+        // roll and yaw are flipped, pitch remains unchanged
+        // if(counter > 50) {
+        //     counter = 0;
+        //     gcs().send_text(MAV_SEVERITY_CRITICAL, "HORIZ MODE");
+        // }
+        _motors.set_roll(get_rate_yaw_pid().update_all(_ang_vel_body.z, gyro_latest.z,  _dt, _motors.limit.yaw, _pd_scale.z) + _actuator_sysid.z);
+        _motors.set_roll_ff(get_rate_yaw_pid().get_ff()*_feedforward_scalar);
+        
+        _motors.set_yaw(get_rate_roll_pid().update_all(_ang_vel_body.x, gyro_latest.x,  _dt, _motors.limit.roll, _pd_scale.x) + _actuator_sysid.x);
+        _motors.set_yaw_ff(get_rate_roll_pid().get_ff());
+        
+        _motors.set_pitch(get_rate_pitch_pid().update_all(_ang_vel_body.y, gyro_latest.y,  _dt, _motors.limit.pitch, _pd_scale.y) + _actuator_sysid.y);
+        _motors.set_pitch_ff(get_rate_pitch_pid().get_ff());
 
-    _motors.set_pitch(get_rate_pitch_pid().update_all(_ang_vel_body.y, gyro_latest.y,  _dt, _motors.limit.pitch, _pd_scale.y) + _actuator_sysid.y);
-    _motors.set_pitch_ff(get_rate_pitch_pid().get_ff());
+    } else{
+        // if(counter > 50) {
+        //     counter = 0;
+        //     gcs().send_text(MAV_SEVERITY_CRITICAL, "DRONE MODE");
+        // }
+        _motors.set_roll(get_rate_roll_pid().update_all(_ang_vel_body.x, gyro_latest.x,  _dt, _motors.limit.roll, _pd_scale.x) + _actuator_sysid.x);
+        _motors.set_roll_ff(get_rate_roll_pid().get_ff());
+    
+        _motors.set_pitch(get_rate_pitch_pid().update_all(_ang_vel_body.y, gyro_latest.y,  _dt, _motors.limit.pitch, _pd_scale.y) + _actuator_sysid.y);
+        _motors.set_pitch_ff(get_rate_pitch_pid().get_ff());
+    
+        _motors.set_yaw(get_rate_yaw_pid().update_all(_ang_vel_body.z, gyro_latest.z,  _dt, _motors.limit.yaw, _pd_scale.z) + _actuator_sysid.z);
+        _motors.set_yaw_ff(get_rate_yaw_pid().get_ff()*_feedforward_scalar);
+    }
 
-    _motors.set_yaw(get_rate_yaw_pid().update_all(_ang_vel_body.z, gyro_latest.z,  _dt, _motors.limit.yaw, _pd_scale.z) + _actuator_sysid.z);
-    _motors.set_yaw_ff(get_rate_yaw_pid().get_ff()*_feedforward_scalar);
 
     _sysid_ang_vel_body.zero();
     _actuator_sysid.zero();
