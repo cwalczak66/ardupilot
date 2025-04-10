@@ -10,6 +10,8 @@
 
 #include <RC_Channel/RC_Channel.h>
 #include <GCS_MAVLink/GCS.h>
+#include <cmath>
+#include "AP_Math/AP_Math.h"
 
 
 // table of user settable parameters
@@ -450,15 +452,11 @@ void AC_AttitudeControl_Multi::update_throttle_rpy_mix()
 void AC_AttitudeControl_Multi::rate_controller_run()
 {
 
-    //int pwm_val = RC_Channel::ch(12)->get_radio_in();  // Channel 13 is index 12
     int pwmch13 = rc().channel(12)->get_radio_in();
-    static uint8_t counter = 0;
-    counter++;
-    // if (counter > 100) {
-    //     counter = 0;
-    //     gcs().send_text(MAV_SEVERITY_CRITICAL, "AttitudeCtrl: value = %d", pwmch13);
-    // }
-    
+
+    // get the current estimated wing angle in radians (0~PI/2)
+    float wing_theta = radians(((float)(pwmch13 - 1000) / (2000 - 1000)) * 90.0f);
+
     // boost angle_p/pd each cycle on high throttle slew
     update_throttle_gain_boost();
 
@@ -469,38 +467,29 @@ void AC_AttitudeControl_Multi::rate_controller_run()
 
     Vector3f gyro_latest = _ahrs.get_gyro_latest();
 
-    if(pwmch13 >= 1600) {
-        // roll and yaw are flipped, pitch remains unchanged
-        if(counter > 100) {
-            counter = 0;
-            float desYaw = get_rate_yaw_pid().update_all(_ang_vel_body.z, gyro_latest.z,  _dt, _motors.limit.yaw, _pd_scale.z) + _actuator_sysid.z;
-            gcs().send_text(MAV_SEVERITY_CRITICAL, "HORIZ MODE, Yaw: %f", desYaw);
+    float yawVal = get_rate_yaw_pid().update_all(_ang_vel_body.z, gyro_latest.z,  _dt, _motors.limit.yaw, _pd_scale.z) + _actuator_sysid.z;
+    float yawFFVal = get_rate_yaw_pid().get_ff()*_feedforward_scalar;
+    float rollVal = get_rate_roll_pid().update_all(_ang_vel_body.x, gyro_latest.x,  _dt, _motors.limit.roll, _pd_scale.x) + _actuator_sysid.x;
+    float rollFFVal = get_rate_roll_pid().get_ff();
+    float pitchVal = get_rate_pitch_pid().update_all(_ang_vel_body.y, gyro_latest.y,  _dt, _motors.limit.pitch, _pd_scale.y) + _actuator_sysid.y;
+    float pitchFFVal = get_rate_pitch_pid().get_ff();
 
-        }
-        _motors.set_roll(get_rate_yaw_pid().update_all(_ang_vel_body.z, gyro_latest.z,  _dt, _motors.limit.yaw, _pd_scale.z) + _actuator_sysid.z);
-        _motors.set_roll_ff(get_rate_yaw_pid().get_ff()*_feedforward_scalar);
-        
-        _motors.set_yaw(-1.0 * get_rate_roll_pid().update_all(_ang_vel_body.x, gyro_latest.x,  _dt, _motors.limit.roll, _pd_scale.x) + _actuator_sysid.x);
-        _motors.set_yaw_ff(-1.0 * get_rate_roll_pid().get_ff());
-        
-        _motors.set_pitch(get_rate_pitch_pid().update_all(_ang_vel_body.y, gyro_latest.y,  _dt, _motors.limit.pitch, _pd_scale.y) + _actuator_sysid.y);
-        _motors.set_pitch_ff(get_rate_pitch_pid().get_ff());
+    float newRoll = (rollVal * cosf(wing_theta)) - (yawVal * sinf(wing_theta));
+    float newRollFF = (rollFFVal * cosf(wing_theta)) - (yawFFVal * sinf(wing_theta));
 
-    } else{
-        if(counter > 100) {
-            counter = 0;
-            float desYaw = get_rate_yaw_pid().update_all(_ang_vel_body.z, gyro_latest.z,  _dt, _motors.limit.yaw, _pd_scale.z) + _actuator_sysid.z;
-            gcs().send_text(MAV_SEVERITY_CRITICAL, "DRONE MODE, Yaw: %f", desYaw);
-        }
-        _motors.set_roll(get_rate_roll_pid().update_all(_ang_vel_body.x, gyro_latest.x,  _dt, _motors.limit.roll, _pd_scale.x) + _actuator_sysid.x);
-        _motors.set_roll_ff(get_rate_roll_pid().get_ff());
+    float newYaw = (rollVal * sinf(wing_theta)) + (yawVal * cosf(wing_theta));
+    float newYawFF = (rollFFVal * sinf(wing_theta)) + (yawFFVal * cosf(wing_theta));
+
+
+    _motors.set_roll(newRoll);
+    _motors.set_roll_ff(newRollFF);
     
-        _motors.set_pitch(get_rate_pitch_pid().update_all(_ang_vel_body.y, gyro_latest.y,  _dt, _motors.limit.pitch, _pd_scale.y) + _actuator_sysid.y);
-        _motors.set_pitch_ff(get_rate_pitch_pid().get_ff());
+    _motors.set_yaw(newYaw);
+    _motors.set_yaw_ff(newYawFF);
+
+    _motors.set_pitch(pitchVal);
+    _motors.set_pitch_ff(pitchFFVal);
     
-        _motors.set_yaw(get_rate_yaw_pid().update_all(_ang_vel_body.z, gyro_latest.z,  _dt, _motors.limit.yaw, _pd_scale.z) + _actuator_sysid.z);
-        _motors.set_yaw_ff(get_rate_yaw_pid().get_ff()*_feedforward_scalar);
-    }
 
 
     _sysid_ang_vel_body.zero();
