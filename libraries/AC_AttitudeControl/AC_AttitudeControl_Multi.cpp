@@ -466,6 +466,7 @@ void AC_AttitudeControl_Multi::rate_controller_run()
     _ang_vel_body += _sysid_ang_vel_body;
 
     Vector3f gyro_latest = _ahrs.get_gyro_latest();
+    // rot matrix
 
     float yawVal = get_rate_yaw_pid().update_all(_ang_vel_body.z, gyro_latest.z,  _dt, _motors.limit.yaw, _pd_scale.z) + _actuator_sysid.z;
     float yawFFVal = get_rate_yaw_pid().get_ff()*_feedforward_scalar;
